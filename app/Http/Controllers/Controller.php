@@ -10,4 +10,10 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+    public function counts($user){
+        $count_twitter=$user->twitter()->count();
+        return[
+            'count_twitter'=>$count_twitter,
+            ];
+    }
 }
