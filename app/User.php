@@ -61,5 +61,11 @@ class User extends Authenticatable
     public function is_following($userId){
         return $this->followings()->where('follow_id',$userId)->exists();
     }
+    public function feed_twitter()
+    {
+        $follow_user_ids=$this->followings()->pluck('users.id')->toArray();
+        $follow_user_ids[]=$this->id;
+        return Twitter::whereIn('user_id',$follow_user_ids);
+    }
     
 }
