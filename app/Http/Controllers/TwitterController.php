@@ -11,7 +11,7 @@ class TwitterController extends Controller
         $data=[];
         if(\Auth::check()){
             $user=\Auth::user();
-            $twitter=$user->microposts()->orderBy('created_at','desc')->paginate(10);
+            $twitter=$user->twitter()->orderBy('created_at','desc')->paginate(10);
             $data=[
                 'user'=>$user,
                 'twitter'=>$twitter,

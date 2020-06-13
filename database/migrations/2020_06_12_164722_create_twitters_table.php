@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTwitterTable extends Migration
+class CreateTwittersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateTwitterTable extends Migration
      */
     public function up()
     {
-        Schema::create('tweetes', function (Blueprint $table) {
+        Schema::create('twitters', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->unsigned()->index();
             $table->string('content');
@@ -29,6 +29,6 @@ class CreateTwitterTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tweetes');
+        Schema::dropIfExists('twitters');
     }
 }

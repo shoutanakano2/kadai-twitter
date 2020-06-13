@@ -5,7 +5,7 @@
         <div class="row">
             <aside class="col-sm-4">
                 <div class="card">
-                    <div class="card-header">
+                    <div clsass="card-header">
                         <h3 class="card-title">{{ Auth::user()->name }}</h3>
                     </div>
                     <div class="card-body">
@@ -21,6 +21,7 @@
                             {!! Form::submit('Post',['class'=>'btn btn-primary btn-block']) !!}
                         </div>
                     {!! Form::close() !!}
+                @endif
                 @if(count($twitter)>0)
                     @include('twitter.twitter',['twitter'=>$twitter])
                 @endif

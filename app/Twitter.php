@@ -12,10 +12,5 @@ class Twitter extends Model
     {
         return $this->belongsTo(User::class);
     }
-    protected $hidden=[
-        'password','remember_token',];
-    
-    public function twitter(){
-        return $this->hasMany(Twitter::class);
-    }
+
 }

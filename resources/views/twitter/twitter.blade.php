@@ -7,15 +7,15 @@
                     {!! link_to_route('users.show',$tweet->user->name,['id'=>$tweet->user->id]) !!}<span class="text-muted">posted at{{$tweet->created_at}}</span>
                 </div>
                 <div>
-                    <p class="mb-0">{!! n12br(e($tweet->content)) !!}</p>
+                    <p class="mb-0">{!! nl2br(e($tweet->content)) !!}</p>
                 </div>
-                <diV>
+                <div>
                     @if(Auth::id()==$tweet->user_id)
-                        {!! Form::open(['route'=>'twitter.destroy',$tweet->id],'method'=>'delete']) !!}
+                        {!! Form::open(['route'=>['twitter.destroy',$tweet->id],'method'=>'delete']) !!}
                             {!! Form ::submit('Delete',['class'=>'btn btn-danger btn-sm']) !!}
                         {!! Form::close() !!}
                     @endif
-                </diV>
+                </div>
             </div>
         </li> 
     @endforeach
