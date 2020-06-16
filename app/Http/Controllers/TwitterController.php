@@ -12,9 +12,11 @@ class TwitterController extends Controller
         if(\Auth::check()){
             $user=\Auth::user();
             $twitter=$user->feed_twitter()->orderBy('created_at','desc')->paginate(10);
+            $favorites=$user->favorites()->orderBy('created_at','desc')->paginate(10);
             $data=[
                 'user'=>$user,
                 'twitter'=>$twitter,
+                'favorites'=>$favorites,
                 ];
         }
         return view('welcome',$data);

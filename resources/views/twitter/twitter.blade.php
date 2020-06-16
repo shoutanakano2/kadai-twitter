@@ -9,6 +9,18 @@
                 <div>
                     <p class="mb-0">{!! nl2br(e($tweet->content)) !!}</p>
                 </div>
+                 <div>
+                     
+                    @if(Auth::user()->is_favoriting($tweet->id))
+                        {!! Form::open(['route'=>['favorites.unfavorite',$tweet->id],'method'=>'delete']) !!}
+                            {!! Form::submit('Unfavorite') !!}
+                        {!! Form::close() !!}
+                    @else
+                        {!! Form::open(['route'=>['favorites.favorite',$tweet->id]]) !!}
+                            {!! Form::submit('Favorite') !!}
+                        {!! Form::close() !!}
+                    @endif
+                </div>
                 <div>
                     @if(Auth::id()==$tweet->user_id)
                         {!! Form::open(['route'=>['twitter.destroy',$tweet->id],'method'=>'delete']) !!}

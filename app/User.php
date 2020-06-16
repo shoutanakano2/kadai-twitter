@@ -68,4 +68,36 @@ class User extends Authenticatable
         return Twitter::whereIn('user_id',$follow_user_ids);
     }
     
+    public function favorites(){
+        return $this->belongsToMany(Twitter::class,'favorites','user_id','twitter_id')->withTimestamps();
+    }
+    
+    public function favorite($twitterId)
+    {
+        $exist=$this->is_favoriting($twitterId);
+        if($exist==true){
+            return false;
+        }
+        else{
+            $this->favorites()->attach($twitterId);
+            return true;
+        }
+    }
+    
+    public function unfavorite($twitterId)
+    {
+        $exist=$this->is_favoriting($twitterId);
+        if($exist==true){
+            $this->favorites()->detach($twitterId);
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    public function is_favoriting($twitterId){
+        return $this->favorites()->where('twitter_id',$twitterId)->exists();
+    }
+    
+    
 }
